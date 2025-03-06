@@ -7,6 +7,5 @@ import dagger.hilt.android.HiltAndroidApp
 class CoreApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        // Initialize libraries, perform setup, etc.
     }
 }

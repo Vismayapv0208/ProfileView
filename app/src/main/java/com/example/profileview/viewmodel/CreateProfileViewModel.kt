@@ -1,5 +1,7 @@
 package com.example.profileview.viewmodel
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.profileview.data.ProfileRepository
@@ -9,6 +11,7 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.ktx.logEvent
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +21,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 
 @HiltViewModel
-class CreateProfileViewModel @Inject constructor(private val profileRepository: ProfileRepository) : ViewModel() {
+class CreateProfileViewModel @Inject constructor(
+    private val profileRepository: ProfileRepository,
+    @ApplicationContext private val context: Context
+) : ViewModel() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
@@ -34,6 +40,7 @@ class CreateProfileViewModel @Inject constructor(private val profileRepository: 
         viewModelScope.launch {
             profileRepository.insertProfile(profile)
             logProfileCreatedEvent()
+            showToast("Profile Created")
             getAllProfiles()
         }
     }
@@ -42,6 +49,7 @@ class CreateProfileViewModel @Inject constructor(private val profileRepository: 
         viewModelScope.launch {
             profileRepository.updateProfile(profile)
             logProfileEditedEvent()
+            showToast("Profile Edited")
             getAllProfiles()
         }
     }
@@ -50,6 +58,7 @@ class CreateProfileViewModel @Inject constructor(private val profileRepository: 
         viewModelScope.launch {
             profileRepository.deleteProfile(profile)
             logProfileDeletedEvent()
+            showToast("Profile Deleted")
             getAllProfiles()
         }
     }
@@ -78,5 +87,9 @@ class CreateProfileViewModel @Inject constructor(private val profileRepository: 
         firebaseAnalytics.logEvent("profile_deleted") {
             param("event_type", "profile_deleted")
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

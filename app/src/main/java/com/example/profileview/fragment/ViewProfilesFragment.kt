@@ -51,7 +51,6 @@ class ViewProfilesFragment : Fragment() {
 
     private fun setupRecyclerView() {
         personListAdapter = PersonListAdapter { person ->
-            // Navigate to DetailFragment using Safe Args
             navigateToDetailFragment(person.id)
         }
 
@@ -107,7 +106,6 @@ class ViewProfilesFragment : Fragment() {
         }
     }
 
-    // Navigation using Safe Args
     private fun navigateToDetailFragment(personId: Int) {
         val action = ViewProfilesFragmentDirections.actionViewProfilesFragmentToDetailFragment(personId)
         findNavController().navigate(action)

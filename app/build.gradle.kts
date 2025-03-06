@@ -10,16 +10,6 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-//    id("org.jetbrains.kotlin.android")
-//    id("com.google.gms.google-services")
-//    kotlin("kapt")
-//    ( "androidx.navigation.safeargs.kotlin") // For Hilt
-//    id("com.google.gms.google-services") // For Firebase
-
-//    id("com.google.gms.google-services")
-//    id("com.google.firebase.crashlytics")
-//    id("com.google.firebase.firebase-perf")
-
 }
 
 android {
