@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProfileView</string>
+    <string name="add_profile">Add profile\n</string>
+    <string name="name">name</string>
+    <string name="profession">Proffession\n</string>
+    <string name="address">Address\n</string>
+    <string name="done">Done</string>
+    <string name="edit_profile">Edit Profile</string>
+</resources>
